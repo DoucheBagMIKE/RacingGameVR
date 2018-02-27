@@ -8,33 +8,25 @@ using VRTK.Controllables.ArtificialBased;
 
 public class PlayerInput : MonoBehaviour
 {
-    public float turnValue;
-    public float thrustValue;
+	public string verticalAxisName = "Vertical";        //The name of the thruster axis
+	public string horizontalAxisName = "Horizontal";    //The name of the rudder axis
+	public string brakingKey = "Brake";                 //The name of the brake button
 
-    public enum InputScheme { VR, KeyBoard};
-    public InputScheme inputScheme;
+    public VRTK_ArtificialSlider verticalAxisController;
+    public VRTK_ArtificialSlider horizontalAxisController;
+
+
 	//We hide these in the inspector because we want 
 	//them public but we don't want people trying to change them
 	[HideInInspector] public float thruster;			//The current thruster value
 	[HideInInspector] public float rudder;				//The current rudder value
-	[HideInInspector] public bool isBraking;            //The current brake value
+	[HideInInspector] public bool isBraking;			//The current brake value
 
-    [Tooltip("Object that controls TURN input.")]
-    public ArtificialRotatorExtended turnControlObject;
-    public float deadzone = 0.05f;
-    [Tooltip("Object that controls THRUST input.")]
-    public VRTK_ArtificialSlider thrustControlObject;
-
-    void Update()
+	void Update()
 	{
-        if (turnControlObject != null)
-        {
-            //turnValue = Mathf.Lerp(-1f, 1f, turnControlObject.GetNormalizedValue());
-            turnValue = turnControlObject.GetStepValue(turnControlObject.GetValue());
-        }
-
-        if (thrustControlObject != null)
-            thrustValue = thrustControlObject.GetNormalizedValue();
+		//If the player presses the Escape key and this is a build (not the editor), exit the game
+		if (Input.GetButtonDown("Cancel") && !Application.isEditor)
+			Application.Quit();
 
 		//If a GameManager exists and the game is not active...
 		if (GameManager.instance != null && !GameManager.instance.IsActiveGame())
@@ -46,17 +38,21 @@ public class PlayerInput : MonoBehaviour
 		}
 
         //Get the values of the thruster, rudder, and brake from the input class
-        if(inputScheme == InputScheme.VR)
-        {
-            thruster = thrustValue;
-            rudder = turnValue;
-        }
+
+        //thruster
+        if (Mathf.Abs(verticalAxisController.GetNormalizedValue()) > Input.GetAxis(verticalAxisName) && verticalAxisController!=null)
+            thruster = verticalAxisController.GetNormalizedValue();
         else
-        {
-            thruster = Input.GetAxis("Vertical");
-            rudder = Input.GetAxis("Horizontal");
-        }
-        
-        isBraking = false; //Input.GetButton(brakingKey);
+            thruster = Input.GetAxis(verticalAxisName);
+
+        //rudder
+        float val = horizontalAxisController.GetStepValue(horizontalAxisController.GetValue());
+        if (Mathf.Abs(val) > Input.GetAxis(horizontalAxisName) && horizontalAxisController !=null)
+            rudder = val;
+        else
+            rudder = Input.GetAxis(horizontalAxisName);
+
+        //brake
+        isBraking = Input.GetButton(brakingKey);
 	}
 }

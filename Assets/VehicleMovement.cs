@@ -12,8 +12,6 @@ public class VehicleMovement : MonoBehaviour
 	public float slowingVelFactor = .99f;   //The percentage of velocity the ship maintains when not thrusting (e.g., a value of .99 means the ship loses 1% velocity when not thrusting)
 	public float brakingVelFactor = .95f;   //The percentage of velocty the ship maintains when braking
 	public float angleOfRoll = 30f;			//The angle that the ship "banks" into a turn
-    public float turningMultiplier = .1f;
-    public float driftForceMultiplier = 1;
 
 	[Header("Hover Settings")]
 	public float hoverHeight = 1.5f;        //The height the ship maintains when hovering
@@ -62,7 +60,7 @@ public class VehicleMovement : MonoBehaviour
 		Vector3 groundNormal;
 
 		//Calculate a ray that points straight down from the ship
-		Ray ray = new Ray(transform.position + Vector3.up, -transform.up);
+		Ray ray = new Ray(transform.position, -transform.up);
 
 		//Declare a variable that will hold the result of a raycast
 		RaycastHit hitInfo;
@@ -126,22 +124,19 @@ public class VehicleMovement : MonoBehaviour
 
 	void CalculatePropulsion()
 	{
-        //Calculate the yaw torque based on the rudder and current angular velocity
-        float rotationTorque = input.rudder - rigidBody.angularVelocity.y;
-        //float rotationTorque = (input.rudder * turningMultiplier) - Vector3.Dot(rigidBody.angularVelocity, transform.right);
-
-
-        //Apply the torque to the ship's Y axis
-        rigidBody.AddRelativeTorque(0f, rotationTorque, 0f, ForceMode.VelocityChange);
+		//Calculate the yaw torque based on the rudder and current angular velocity
+		float rotationTorque = input.rudder - rigidBody.angularVelocity.y;
+		//Apply the torque to the ship's Y axis
+		rigidBody.AddRelativeTorque(0f, rotationTorque, 0f, ForceMode.VelocityChange);
 
 		//Calculate the current sideways speed by using the dot product. This tells us
 		//how much of the ship's velocity is in the "right" or "left" direction
 		float sidewaysSpeed = Vector3.Dot(rigidBody.velocity, transform.right);
 
-        //Calculate the desired amount of friction to apply to the side of the vehicle. This
-        //is what keeps the ship from drifting into the walls during turns. If you want to add
-        //drifting to the game, divide Time.fixedDeltaTime by some amount
-        Vector3 sideFriction = -transform.right * (sidewaysSpeed / (Time.fixedDeltaTime * driftForceMultiplier));
+		//Calculate the desired amount of friction to apply to the side of the vehicle. This
+		//is what keeps the ship from drifting into the walls during turns. If you want to add
+		//drifting to the game, divide Time.fixedDeltaTime by some amount
+		Vector3 sideFriction = -transform.right * (sidewaysSpeed / Time.fixedDeltaTime); 
 
 		//Finally, apply the sideways friction
 		rigidBody.AddForce(sideFriction, ForceMode.Acceleration);
