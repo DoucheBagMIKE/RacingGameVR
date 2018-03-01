@@ -40,14 +40,14 @@ public class PlayerInput : MonoBehaviour
         //Get the values of the thruster, rudder, and brake from the input class
 
         //thruster
-        if (Mathf.Abs(verticalAxisController.GetNormalizedValue()) > Input.GetAxis(verticalAxisName) && verticalAxisController!=null)
+        if (Mathf.Abs(verticalAxisController.GetNormalizedValue()) > Mathf.Abs(Input.GetAxis(verticalAxisName)) && verticalAxisController!=null)
             thruster = verticalAxisController.GetNormalizedValue();
         else
             thruster = Input.GetAxis(verticalAxisName);
 
         //rudder
         float val = horizontalAxisController.GetStepValue(horizontalAxisController.GetValue());
-        if (Mathf.Abs(val) > Input.GetAxis(horizontalAxisName) && horizontalAxisController !=null)
+        if (Mathf.Abs(val) > Mathf.Abs(Input.GetAxis(horizontalAxisName)) && horizontalAxisController !=null)
             rudder = val;
         else
             rudder = Input.GetAxis(horizontalAxisName);

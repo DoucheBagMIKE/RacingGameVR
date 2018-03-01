@@ -26,6 +26,8 @@ ModelImporter:
     100036: Wall_Face_Right
     100038: Wall_Left
     100040: Wall_Right
+    100042: GlassRing_001
+    100044: NurbsPath
     400000: NurbsCircle
     400002: Track
     400004: //RootNode
@@ -47,6 +49,8 @@ ModelImporter:
     400036: Wall_Face_Right
     400038: Wall_Left
     400040: Wall_Right
+    400042: GlassRing_001
+    400044: NurbsPath
     2100000: unnamed
     2100002: Material
     2100004: Glass
@@ -69,6 +73,8 @@ ModelImporter:
     2300030: Wall_Face_Right
     2300032: Wall_Left
     2300034: Wall_Right
+    2300036: GlassRing_001
+    2300038: NurbsPath
     3300000: NurbsCircle
     3300002: Track
     3300004: TrackSegment
@@ -87,6 +93,8 @@ ModelImporter:
     3300030: Wall_Face_Right
     3300032: Wall_Left
     3300034: Wall_Right
+    3300036: GlassRing_001
+    3300038: NurbsPath
     4300000: NurbsCircle
     4300002: Track
     4300004: TrackSegment
@@ -105,6 +113,8 @@ ModelImporter:
     4300030: Wall_Left
     4300032: Wall_Face_Right
     4300034: Wall_Face_Left
+    4300036: NurbsPath
+    4300038: GlassRing_001
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

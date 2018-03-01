@@ -31,6 +31,9 @@ public class VehicleMovement : MonoBehaviour
 	float drag;								//The air resistance the ship recieves in the forward direction
 	bool isOnGround;						//A flag determining if the ship is currently on the ground
 
+    [Header("Misc")]
+    public float rotateToGroundAmount = 10f;
+
 
 	void Start()
 	{
@@ -40,6 +43,7 @@ public class VehicleMovement : MonoBehaviour
 
 		//Calculate the ship's drag value
 		drag = driveForce / terminalVelocity;
+
 	}
 
 	void FixedUpdate()
@@ -109,7 +113,7 @@ public class VehicleMovement : MonoBehaviour
 
 		//Move the ship over time to match the desired rotation to match the ground. This is 
 		//done smoothly (using Lerp) to make it feel more realistic
-		rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * 10f));
+		rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * rotateToGroundAmount));
 
 		//Calculate the angle we want the ship's body to bank into a turn based on the current rudder.
 		//It is worth noting that these next few steps are completetly optional and are cosmetic.
