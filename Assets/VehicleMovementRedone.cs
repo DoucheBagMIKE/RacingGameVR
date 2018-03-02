@@ -3,7 +3,7 @@
 
 using UnityEngine;
 
-public class VehicleMovement : MonoBehaviour
+public class VehicleMovementRedone : MonoBehaviour
 {
 	public float speed;						//The current forward speed of the ship
 
@@ -63,8 +63,6 @@ public class VehicleMovement : MonoBehaviour
 
 	void CalculatHover()
 	{
-		
-		Vector3 groundNormal;
 
 		//Calculate a ray that points straight down from the ship
 		Ray ray = new Ray(transform.position, -transform.up);

@@ -1,17 +1,42 @@
 fileFormatVersion: 2
-guid: 480076283887e2a48bc92bd03efbeb11
-timeCreated: 1519681367
+guid: 2d06ad5bbf5d977488ad4277a7328fb3
+timeCreated: 1519922094
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Material_001
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Grid
-    6400000: //RootNode
+    100000: Cube
+    100002: Cube_001
+    100004: NurbsCircle
+    100006: Plane
+    100008: Plane_001
+    100010: //RootNode
+    100012: TrackData
+    400000: Cube
+    400002: Cube_001
+    400004: NurbsCircle
+    400006: Plane
+    400008: Plane_001
+    400010: //RootNode
+    400012: TrackData
+    2100000: unnamed
+    2100002: Material_001
+    2100004: Material_002
+    2300000: Cube
+    2300002: Cube_001
+    2300004: NurbsCircle
+    2300006: Plane
+    2300008: Plane_001
+    3300000: Cube
+    3300002: Cube_001
+    3300004: NurbsCircle
+    3300006: Plane
+    3300008: Plane_001
+    4300000: NurbsCircle
+    4300002: Cube_001
+    4300004: Cube
+    4300006: Plane_001
+    4300008: Plane
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -46,7 +71,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -54,7 +79,7 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
