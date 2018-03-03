@@ -34,7 +34,6 @@ public class VehicleMovement : MonoBehaviour
     [Header("Misc")]
     public float rotateToGroundAmount = 10f;
     public float turningMultiplier = 1;
-    public float fidelity = 0.1f;
 
     //This variable will hold the "normal" of the ground. Think of it as a line
     //the points "up" from the surface of the ground
@@ -66,7 +65,6 @@ public class VehicleMovement : MonoBehaviour
 
 	void CalculatHover()
 	{
-        Vector3 newGroundNormal = Vector3.zero;
 		//Calculate a ray that points straight down from the ship
 		Ray ray = new Ray(transform.position, -transform.up);
 
@@ -118,14 +116,13 @@ public class VehicleMovement : MonoBehaviour
         //Calculate the amount of pitch and roll the ship needs to match its orientation
         //with that of the ground. This is done by creating a projection and then calculating
         //the rotation needed to face that projection
-        newGroundNormal = ((Vector3)groundNormal + (Vector3)lastGroundNormal) / 2f;
-		Vector3 projection = Vector3.ProjectOnPlane(transform.forward, newGroundNormal);
-		Quaternion rotation = Quaternion.LookRotation(projection, newGroundNormal);
+		Vector3 projection = Vector3.ProjectOnPlane(transform.forward, groundNormal);
+		Quaternion rotation = Quaternion.LookRotation(projection, groundNormal);
 
         //Move the ship over time to match the desired rotation to match the ground. This is 
         //done smoothly (using Lerp) to make it feel more realistic
         //rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * (.2f + (GetSpeedPercentage() * rotateToGroundAmount))));
-        rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * rotateToGroundAmount));
+        rigidBody.MoveRotation(Quaternion.Slerp(rigidBody.rotation, rotation, Time.deltaTime * rotateToGroundAmount));
 
         //Calculate the angle we want the ship's body to bank into a turn based on the current rudder.
         //It is worth noting that these next few steps are completetly optional and are cosmetic.
