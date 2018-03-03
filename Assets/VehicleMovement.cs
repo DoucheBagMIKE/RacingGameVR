@@ -33,10 +33,13 @@ public class VehicleMovement : MonoBehaviour
 
     [Header("Misc")]
     public float rotateToGroundAmount = 10f;
+    public float turningMultiplier = 1;
+    public float fidelity = 0.1f;
 
     //This variable will hold the "normal" of the ground. Think of it as a line
     //the points "up" from the surface of the ground
     Vector3 groundNormal;
+    Vector3? lastGroundNormal = Vector3.up;
 
 
 	void Start()
@@ -63,9 +66,7 @@ public class VehicleMovement : MonoBehaviour
 
 	void CalculatHover()
 	{
-		
-		Vector3 groundNormal;
-
+        Vector3 newGroundNormal = Vector3.zero;
 		//Calculate a ray that points straight down from the ship
 		Ray ray = new Ray(transform.position, -transform.up);
 
@@ -81,10 +82,16 @@ public class VehicleMovement : MonoBehaviour
 		{
 			//...determine how high off the ground it is...
 			float height = hitInfo.distance;
-			//...save the normal of the ground...
-			groundNormal = hitInfo.normal.normalized;
-			//...use the PID controller to determine the amount of hover force needed...
-			float forcePercent = hoverPID.Seek(hoverHeight, height);
+
+            if (lastGroundNormal != groundNormal)
+                lastGroundNormal = groundNormal;
+
+            //...save the normal of the ground...
+            groundNormal = hitInfo.normal.normalized;
+
+
+            //...use the PID controller to determine the amount of hover force needed...
+            float forcePercent = hoverPID.Seek(hoverHeight, height);
 			
 			//...calulcate the total amount of hover force based on normal (or "up") of the ground...
 			Vector3 force = groundNormal * hoverForce * forcePercent;
@@ -108,20 +115,22 @@ public class VehicleMovement : MonoBehaviour
 			rigidBody.AddForce(gravity, ForceMode.Acceleration);
 		}
 
-		//Calculate the amount of pitch and roll the ship needs to match its orientation
-		//with that of the ground. This is done by creating a projection and then calculating
-		//the rotation needed to face that projection
-		Vector3 projection = Vector3.ProjectOnPlane(transform.forward, groundNormal);
-		Quaternion rotation = Quaternion.LookRotation(projection, groundNormal);
+        //Calculate the amount of pitch and roll the ship needs to match its orientation
+        //with that of the ground. This is done by creating a projection and then calculating
+        //the rotation needed to face that projection
+        newGroundNormal = ((Vector3)groundNormal + (Vector3)lastGroundNormal) / 2f;
+		Vector3 projection = Vector3.ProjectOnPlane(transform.forward, newGroundNormal);
+		Quaternion rotation = Quaternion.LookRotation(projection, newGroundNormal);
 
-		//Move the ship over time to match the desired rotation to match the ground. This is 
-		//done smoothly (using Lerp) to make it feel more realistic
-		rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * rotateToGroundAmount));
+        //Move the ship over time to match the desired rotation to match the ground. This is 
+        //done smoothly (using Lerp) to make it feel more realistic
+        //rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * (.2f + (GetSpeedPercentage() * rotateToGroundAmount))));
+        rigidBody.MoveRotation(Quaternion.Lerp(rigidBody.rotation, rotation, Time.deltaTime * rotateToGroundAmount));
 
-		//Calculate the angle we want the ship's body to bank into a turn based on the current rudder.
-		//It is worth noting that these next few steps are completetly optional and are cosmetic.
-		//It just feels so darn cool
-		float angle = angleOfRoll * -input.rudder;
+        //Calculate the angle we want the ship's body to bank into a turn based on the current rudder.
+        //It is worth noting that these next few steps are completetly optional and are cosmetic.
+        //It just feels so darn cool
+        float angle = angleOfRoll * -input.rudder;
 
 		//Calculate the rotation needed for this new angle
 		Quaternion bodyRotation = transform.rotation * Quaternion.Euler(0f, 0f, angle);
@@ -131,10 +140,11 @@ public class VehicleMovement : MonoBehaviour
 
 	void CalculatePropulsion()
 	{
-		//Calculate the yaw torque based on the rudder and current angular velocity
-		float rotationTorque = input.rudder - rigidBody.angularVelocity.y;
-		//Apply the torque to the ship's Y axis
-		rigidBody.AddRelativeTorque(0f, rotationTorque, 0f, ForceMode.VelocityChange);
+        //Calculate the yaw torque based on the rudder and current angular velocity
+        //float rotationTorque = input.rudder - rigidBody.angularVelocity.y;
+        float rotationTorque = (input.rudder * turningMultiplier) - Vector3.Dot(rigidBody.angularVelocity, groundNormal);
+        //Apply the torque to the ship's Y axis
+        rigidBody.AddRelativeTorque(0f, rotationTorque, 0f, ForceMode.VelocityChange);
 
 		//Calculate the current sideways speed by using the dot product. This tells us
 		//how much of the ship's velocity is in the "right" or "left" direction
