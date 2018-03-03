@@ -28,8 +28,8 @@ public class PlayerInput : MonoBehaviour
 		if (Input.GetButtonDown("Cancel") && !Application.isEditor)
 			Application.Quit();
 
-		//If a GameManager exists and the game is not active...
-		if (GameManager.instance != null && !GameManager.instance.IsActiveGame())
+		//If a GameManager exists and not racing...
+		if (GameManager.instance != null && GameManager.instance.currentState != GameManager.GameState.Racing)
 		{
 			//...set all inputs to neutral values and exit this method
 			thruster = rudder = 0f;
