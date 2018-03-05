@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
+
+    public HighScoreTable highScoreAsset;
 
     [Header("Game State")]
     [Tooltip("Current state of the game.")]
@@ -19,34 +23,52 @@ public class GameManager : MonoBehaviour {
     }
 
     [Header("Race Settings")]
-    [Tooltip("How many laps will the race go on for.")]
-    public int numberOfLaps = 3;
+
+    [Tooltip("Some race setup Options and the runtime variables for the current race.")]
+    public RaceInfo raceInfo;
+
     [Tooltip("Player reference. If blank, will set at runtime when avaliable.")]
     public VehicleMovement playerCarController;
-
-    [Tooltip("Current player time on lap.")]
-    public float currentLapTime = 0.0f;
-
-    [Tooltip("Current lap player is on.")]
-    public int currentLap = 1;
 
     // Use this for initialization
     void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(this);
+            return;
         }
-
     }
 
-    public void Start()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(RaceStart());
+        if (mode == LoadSceneMode.Single && scene.name != "Loader")
+        {
+            SceneManager.MoveGameObjectToScene(gameObject, scene);
+            StartRace();
+        }
+    }
+
+    public void StartRace()
+    {
+        if(raceInfo.selectedTrack == null)
+        {
+            Debug.LogError("No TrackSelected in the GameManager.");
+            return;
+        }
+        // create a copy of the trackAsset so we can change the variables at runtime without saving them.
+        raceInfo.selectedTrack = Instantiate(raceInfo.selectedTrack);
+        // Initalize the Level.
+        raceInfo.selectedTrack.Initalize(raceInfo.numberOfLaps);
+
+        StartCoroutine(CountDown());
     }
 
     public void Update()
@@ -55,7 +77,7 @@ public class GameManager : MonoBehaviour {
             RaceUpdate();
     }
 
-    public IEnumerator RaceStart()
+    public IEnumerator CountDown()
     {
         //Sets current state to Start
         currentState = GameState.RaceStart;
@@ -85,6 +107,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("1..");
         yield return new WaitForSeconds(1f);
         Debug.Log("GO!");
+        CheckLastLap();
 
         //change game state to racing
         currentState = GameState.Racing;
@@ -94,27 +117,37 @@ public class GameManager : MonoBehaviour {
 
     public void RaceUpdate()
     {
-        currentLapTime += Time.deltaTime;
+        raceInfo.currentLapTime += Time.deltaTime;
     }
 
     public void CompleteLap()
     {
         //debug to console, goto next lap, reset lap timer.
-        Debug.Log("Lap: " + currentLapTime);
-        currentLap++;
-        currentLapTime = 0.0f;
+        Debug.Log("Lap: " + raceInfo.parseTimeFromSeconds(raceInfo.currentLapTime));
+
+        raceInfo.lapTimes[raceInfo.currentLap] = raceInfo.currentLapTime;
+        raceInfo.currentLap++;
+        
+        raceInfo.currentLapTime = 0.0f;
 
         //last lap check
-        if (currentLap == numberOfLaps)
-            Debug.Log("LAST LAP!");
+        CheckLastLap();
 
         //end race check
-        if (currentLap > numberOfLaps)
+        if (raceInfo.currentLap == raceInfo.numberOfLaps)
             EndRace();
     }
 
     public void EndRace()
     {
         currentState = GameState.RaceEnd;
+        raceInfo.logStats();
+        highScoreAsset.UpdateHighScores();
+    }
+
+    void CheckLastLap()
+    {
+        if (raceInfo.currentLap + 1 == raceInfo.numberOfLaps)
+            Debug.Log("LAST LAP!");
     }
 }
