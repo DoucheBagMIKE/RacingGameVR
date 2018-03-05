@@ -113,6 +113,98 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &217593767
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 99.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -13.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693603007438222, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: minEnginePitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: maxEnginePitch
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938136110983280, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.217
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938136110983280, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 114430321933224848, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: setups.Array.data[0]
+      value: 
+      objectReference: {fileID: 983430827}
+    - target: {fileID: 114430321933224848, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: setups.Array.data[1]
+      value: 
+      objectReference: {fileID: 760854505}
+    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: minEngineVolume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
+        type: 2}
+      propertyPath: maxEngineVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 381de31ef10a25647951b84b179336ea, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &760854505 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114172247417825854, guid: 381de31ef10a25647951b84b179336ea,
+    type: 2}
+  m_PrefabInternal: {fileID: 217593767}
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+--- !u!114 &983430827 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114307312518561494, guid: 381de31ef10a25647951b84b179336ea,
+    type: 2}
+  m_PrefabInternal: {fileID: 217593767}
+  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
 --- !u!1 &1633321362
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +284,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114071517168010414, guid: ea568f447c4225d4fbfa90b6253d0ee0,
+        type: 2}
+      propertyPath: raceInfo.selectedTrack
+      value: 
+      objectReference: {fileID: 11400000, guid: f3960165e363ac74382e909d63edf821,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea568f447c4225d4fbfa90b6253d0ee0, type: 2}
   m_IsPrefabParent: 0
