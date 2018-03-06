@@ -152,24 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: minEnginePitch
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: maxEnginePitch
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938136110983280, guid: 381de31ef10a25647951b84b179336ea, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.217
-      objectReference: {fileID: 0}
-    - target: {fileID: 4938136110983280, guid: 381de31ef10a25647951b84b179336ea, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.168
-      objectReference: {fileID: 0}
     - target: {fileID: 114430321933224848, guid: 381de31ef10a25647951b84b179336ea,
         type: 2}
       propertyPath: setups.Array.data[0]
@@ -180,16 +162,6 @@ Prefab:
       propertyPath: setups.Array.data[1]
       value: 
       objectReference: {fileID: 760854505}
-    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: minEngineVolume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114306317700791990, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: maxEngineVolume
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 381de31ef10a25647951b84b179336ea, type: 2}
   m_IsPrefabParent: 0
@@ -288,7 +260,7 @@ Prefab:
         type: 2}
       propertyPath: raceInfo.selectedTrack
       value: 
-      objectReference: {fileID: 11400000, guid: f3960165e363ac74382e909d63edf821,
+      objectReference: {fileID: 11400000, guid: ec40516412b41e049a8aa65adfc68d4d,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea568f447c4225d4fbfa90b6253d0ee0, type: 2}

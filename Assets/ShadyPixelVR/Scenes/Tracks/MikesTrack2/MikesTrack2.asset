@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: MikesTrack2
   m_EditorClassIdentifier: 
   sceneName: MikesTrack2
-  numberOfLaps: 2
+  numberOfLaps: 3
   usePerTrackRotateToGroundAmount: 1
   perTrackRotateToGroundAmount: 2
   useOnGroundGravity: 0

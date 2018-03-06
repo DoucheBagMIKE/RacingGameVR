@@ -11,5 +11,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb21a9be9a89794185cdf79902c677f, type: 3}
   m_Name: HighScoreTable 1
   m_EditorClassIdentifier: 
-  keys: []
-  values: []
+  keys:
+  - FirstTrack
+  - TestTrackONE
+  values:
+  - name: FirstTrack
+    totalPlayTime: 390.4772
+    fastestLap:
+      name: Default
+      valueInSeconds: 7.740615
+    fastestTotal:
+      name: Default
+      valueInSeconds: 38.568714
+  - name: TestTrackONE
+    totalPlayTime: 106.20049
+    fastestLap:
+      name: Ed
+      valueInSeconds: 24.751978
+    fastestTotal:
+      name: Ed
+      valueInSeconds: 29.208433

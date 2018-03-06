@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Name: TestTrackONE
   m_EditorClassIdentifier: 
   sceneName: TestTrackONE
-  numberOfLaps: 1
+  numberOfLaps: 3
+  usePerTrackRotateToGroundAmount: 0
+  perTrackRotateToGroundAmount: 0
+  useOnGroundGravity: 0
+  onGroundGravity: 0
+  useInAitGravity: 0
+  inAirGravity: 0
