@@ -37,14 +37,17 @@ public class GameManager : MonoBehaviour {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
-            Destroy(this);
+            if(instance != this)
+                Destroy(this);
+
             return;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

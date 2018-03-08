@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FinishLine : MonoBehaviour {
 
+    public delegate void LapComplete();
+    public LapComplete lapComplete;
+
     [Tooltip("A gameobject with a 'Checkpoint' component will set this to true when 'PlayerSensor' gameobject passes through the checkpoint.")]
     public bool readyToCompleteLap;
 
@@ -22,6 +25,9 @@ public class FinishLine : MonoBehaviour {
 
     public void CompleteLap()
     {
+        if (lapComplete != null)
+            lapComplete();
+
         readyToCompleteLap = false;
         GameManager.instance.CompleteLap();
     }

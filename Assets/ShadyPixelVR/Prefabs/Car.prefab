@@ -261,6 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4401692390323832}
+  - component: {fileID: 114021176414652390}
   m_Layer: 0
   m_Name: '[VRTK_Scripts]'
   m_TagString: Untagged
@@ -618,7 +619,7 @@ GameObject:
   - component: {fileID: 114430321933224848}
   m_Layer: 0
   m_Name: '[VRTK_SDKManager]'
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -936,6 +937,7 @@ GameObject:
   - component: {fileID: 114306317700791990}
   - component: {fileID: 114392515048630084}
   - component: {fileID: 65393187123764610}
+  - component: {fileID: 114229915966440212}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -2461,6 +2463,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
+--- !u!114 &114021176414652390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256427242234402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af02f6529c1093e429f16c76157467b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114039436895151026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2699,6 +2712,20 @@ MonoBehaviour:
   ringFingerSenseAxisChanged: 0
   pinkyFingerSenseAxisChanged: 0
   controllerVisible: 1
+--- !u!114 &114229915966440212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966699903718766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c40d1a95672195408f9af02991d67aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedPosition: {x: 0, y: 0, z: 0}
+  trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  trackedTimeOffset: 1
 --- !u!114 &114257942924112128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2907,6 +2934,7 @@ MonoBehaviour:
   terminalVelocity: 100
   hoverGravity: 20
   fallGravity: 80
+  isOnGround: 0
   rotateToGroundAmount: 2
   turningMultiplier: 1.5
 --- !u!114 &114392515048630084

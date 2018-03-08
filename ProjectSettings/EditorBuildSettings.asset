@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ShadyPixelVR/Scenes/Loader.unity
+    path: Assets/Loader.unity
     guid: 292eea35014a8aa4d97a8769ab80d9af
   - enabled: 1
     path: Assets/ShadyPixelVR/Scenes/Tracks/FirstTrack/FirstTrack.unity
@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ShadyPixelVR/Scenes/Tracks/MikesTrack2/MikesTrack2.unity
     guid: 33a322aff89092047b43872c7ec2468e
+  - enabled: 1
+    path: Assets/ShadyPixelVR/Scenes/Tracks/FirstTrack Alt/FirstTrackAlt.unity
+    guid: 9c2233600586e994f92acc8e33708db1

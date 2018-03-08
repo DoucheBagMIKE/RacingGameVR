@@ -28,8 +28,9 @@ public class VehicleMovement : MonoBehaviour
 
 	Rigidbody rigidBody;					//A reference to the ship's rigidbody
 	PlayerInput input;						//A reference to the player's input					
-	float drag;								//The air resistance the ship recieves in the forward direction
-	bool isOnGround;						//A flag determining if the ship is currently on the ground
+	float drag;                             //The air resistance the ship recieves in the forward direction
+    [ReadOnly]
+    public bool isOnGround;						//A flag determining if the ship is currently on the ground
 
     [Header("Misc")]
     public float rotateToGroundAmount = 10f;
@@ -191,4 +192,10 @@ public class VehicleMovement : MonoBehaviour
 		//Returns the total percentage of speed the ship is traveling
 		return rigidBody.velocity.magnitude / terminalVelocity;
 	}
+
+    public void StopVelocity()
+    {
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
+    }
 }
