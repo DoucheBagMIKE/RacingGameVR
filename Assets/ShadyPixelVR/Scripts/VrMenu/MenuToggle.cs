@@ -17,7 +17,7 @@ public class MenuToggle : MonoBehaviour {
         controllerEvents.ButtonOnePressed -= ControllerEvents_ButtonOnePressed;
     }
 
-    private void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+    public void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
     {
         //find the new state of the menu..
         bool newState = !menuObject.menuState;
