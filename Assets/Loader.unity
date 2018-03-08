@@ -113,12 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &237888797 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114307312518561494, guid: 381de31ef10a25647951b84b179336ea,
-    type: 2}
-  m_PrefabInternal: {fileID: 523263061}
-  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
 --- !u!1001 &523263061
 Prefab:
   m_ObjectHideFlags: 0
@@ -173,16 +167,6 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114430321933224848, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: setups.Array.data[0]
-      value: 
-      objectReference: {fileID: 237888797}
-    - target: {fileID: 114430321933224848, guid: 381de31ef10a25647951b84b179336ea,
-        type: 2}
-      propertyPath: setups.Array.data[1]
-      value: 
-      objectReference: {fileID: 1155577214}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 381de31ef10a25647951b84b179336ea, type: 2}
   m_IsPrefabParent: 0
@@ -272,12 +256,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &1155577214 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114172247417825854, guid: 381de31ef10a25647951b84b179336ea,
-    type: 2}
-  m_PrefabInternal: {fileID: 523263061}
-  m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
 --- !u!1 &1633321362
 GameObject:
   m_ObjectHideFlags: 0

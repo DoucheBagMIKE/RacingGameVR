@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 114392515048630084}
   - component: {fileID: 65393187123764610}
   - component: {fileID: 114229915966440212}
+  - component: {fileID: 114119607820912630}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -2587,6 +2588,18 @@ MonoBehaviour:
   ringFingerSenseAxisChanged: 0
   pinkyFingerSenseAxisChanged: 0
   controllerVisible: 1
+--- !u!114 &114119607820912630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966699903718766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495c66624d4b26845a2e30680e32ec47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostCar: {fileID: 1668700455965962, guid: 4e9bce0f82d1bf641b0e178e3d18266d, type: 2}
 --- !u!114 &114125465512573496
 MonoBehaviour:
   m_ObjectHideFlags: 1

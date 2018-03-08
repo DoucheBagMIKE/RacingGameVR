@@ -9,6 +9,7 @@ TagManager:
   - TeleportIgnore
   - PlayerSensor
   - StartPoint
+  - FinishLine
   layers:
   - Default
   - TransparentFX
