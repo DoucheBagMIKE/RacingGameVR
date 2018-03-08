@@ -7,13 +7,10 @@ public class GhostLapTracker : MonoBehaviour {
     public GameObject ghostCar;
     Rigidbody rb;
     VehicleMovement movement;
-
-    List<GhostLapData> lapData;
+    GhostTrackData trackData;
+    //List<GhostLapData> lapData;
     int ghostLap;
     int pos;
-
-    //List<Vector3> LapPositions;
-    //List<Quaternion> lapRotations;
 
     float trackedTimeOffset = 0.01f;
     float lastTrackedTime;
@@ -30,7 +27,8 @@ public class GhostLapTracker : MonoBehaviour {
             return;
         }
 
-        
+        trackData = new GhostTrackData();
+
     }
 
     private void Start()
@@ -42,13 +40,12 @@ public class GhostLapTracker : MonoBehaviour {
             if (finish != null)
                 finish.lapComplete += StartGhostingPlayerLaps;
         }
-        
 
-        lapData = new List<GhostLapData>();
-
-        for (int i = 0; i < GameManager.instance.raceInfo.numberOfLaps;i++)
+        trackData.name = GameManager.instance.raceInfo.selectedTrack.name;
+        trackData.lap = new List<GhostLapData>();
+        for (int i = 0; i < GameManager.instance.raceInfo.numberOfLaps; i++)
         {
-            lapData.Add(new GhostLapData());
+            trackData.lap.Add(new GhostLapData());
         }
 
     }
@@ -58,8 +55,8 @@ public class GhostLapTracker : MonoBehaviour {
         if (GameManager.instance.raceInfo.currentLap > GameManager.instance.raceInfo.numberOfLaps - 1)
             return;
         int cLap = GameManager.instance.raceInfo.currentLap;
-        lapData[cLap].LapPositions.Add(transform.position);
-        lapData[cLap].lapRotations.Add(transform.rotation);
+        trackData.lap[cLap].LapPositions.Add(transform.position);
+        trackData.lap[cLap].lapRotations.Add(transform.rotation);
 
         lastTrackedTime = 0f;
     }
@@ -77,12 +74,10 @@ public class GhostLapTracker : MonoBehaviour {
 
             if(isGhosting)
             {
-                if(pos < lapData[ghostLap].LapPositions.Count)
+                if(pos < trackData.lap[ghostLap].LapPositions.Count)
                 {
-                    //ghostCar.transform.position = lapData[ghostLap].LapPositions[pos];
-                    //ghostCar.transform.rotation = lapData[ghostLap].lapRotations[pos];
-                    rb.MovePosition(lapData[ghostLap].LapPositions[pos]);
-                    rb.MoveRotation(lapData[ghostLap].lapRotations[pos]);
+                    rb.MovePosition(trackData.lap[ghostLap].LapPositions[pos]);
+                    rb.MoveRotation(trackData.lap[ghostLap].lapRotations[pos]);
                     pos++;
                 }
                 else
@@ -109,20 +104,5 @@ public class GhostLapTracker : MonoBehaviour {
         rb = ghostCar.GetComponent<Rigidbody>();
         ghostLap = 0;
         pos = 0;
-
-
-
-    }
-
-    public class GhostLapData
-    {
-        public List<Vector3> LapPositions;
-        public List<Quaternion> lapRotations;
-
-        public GhostLapData()
-        {
-            LapPositions = new List<Vector3>();
-            lapRotations = new List<Quaternion>();
-        }
     }
 }
