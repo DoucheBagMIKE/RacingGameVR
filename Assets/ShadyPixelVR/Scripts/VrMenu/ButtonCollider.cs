@@ -16,8 +16,20 @@ public class ButtonCollider : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PlayerHands")
+        //if player touched button..
+        if (other.gameObject.tag == "PlayerHands")
         {
+            //..select object
+            button.Select();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //if player leaves trigger zone
+        if (other.gameObject.tag == "PlayerHands")
+        {
+            //..invoke onClick events
             button.onClick.Invoke();
         }
     }

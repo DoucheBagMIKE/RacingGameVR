@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-        
         if (instance == null)
         {
             instance = this;
@@ -67,9 +66,11 @@ public class GameManager : MonoBehaviour {
             return;
         }
         // create a copy of the trackAsset so we can change the variables at runtime without saving them.
-        raceInfo.selectedTrack = Instantiate(raceInfo.selectedTrack);
+        // raceInfo.selectedTrack = Instantiate(raceInfo.selectedTrack);
         // Initalize the Level.
-        raceInfo.selectedTrack.Initalize(raceInfo.numberOfLaps);
+        Initalize();
+
+        //raceInfo.selectedTrack.Initalize(raceInfo.numberOfLaps);
 
         StartCoroutine(CountDown());
     }
@@ -152,5 +153,48 @@ public class GameManager : MonoBehaviour {
     {
         if (raceInfo.currentLap + 1 == raceInfo.numberOfLaps)
             Debug.Log("LAST LAP!");
+    }
+
+    public void Initalize()
+    {
+        GameObject trackStart = GameObject.FindGameObjectWithTag("StartPoint");
+
+        // test to see if theres a startpoint to place the player at.
+        if (trackStart == null)
+        {
+            Debug.LogError(string.Format("Track {0} doesnt have an object with the StartPoint tag. so it cant finnish setting up the level.", raceInfo.selectedTrack.sceneName));
+            return;
+        }
+
+        if (raceInfo.numberOfLaps == 0)
+        {
+            raceInfo.numberOfLaps = raceInfo.selectedTrack.numberOfLaps;
+        }
+
+        raceInfo.lapTimes = new float[raceInfo.numberOfLaps];
+
+        if (playerCarController == null)
+            playerCarController = Instantiate(raceInfo.selectedCar).GetComponent<VehicleMovement>();
+
+        if (raceInfo.selectedTrack.usePerTrackRotateToGroundAmount)
+            playerCarController.rotateToGroundAmount = raceInfo.selectedTrack.perTrackRotateToGroundAmount;
+
+        playerCarController.transform.position = trackStart.transform.position;
+        playerCarController.transform.rotation = trackStart.transform.rotation;
+
+    }
+
+    public void LoadLevel(TrackAsset trackAsset)
+    {
+        raceInfo.selectedTrack = trackAsset;
+        DontDestroyOnLoad(gameObject);
+        SceneManager.LoadScene(raceInfo.selectedTrack.sceneName, LoadSceneMode.Single);
+    }
+
+    public void ReloadLevel()
+    {
+        DontDestroyOnLoad(gameObject);
+        raceInfo.currentLap = 0;
+        SceneManager.LoadScene(raceInfo.selectedTrack.sceneName, LoadSceneMode.Single);
     }
 }

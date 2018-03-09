@@ -10,14 +10,14 @@ public class MenuToggle : MonoBehaviour {
 
     public void OnEnable()
     {
-        controllerEvents.ButtonOnePressed += ControllerEvents_ButtonOnePressed;
+        controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
     }
     public void OnDisable()
     {
-        controllerEvents.ButtonOnePressed -= ControllerEvents_ButtonOnePressed;
+        controllerEvents.ButtonTwoPressed -= ControllerEvents_ButtonTwoPressed;
     }
 
-    public void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+    public void ControllerEvents_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
     {
         //find the new state of the menu..
         bool newState = !menuObject.menuState;
