@@ -24,7 +24,7 @@ public class HighScoreTable : ScriptableObject
             t.totalPlayTime = 0f;
 
             values.Add(t);
-            return GetOrCreate(track);
+            return t;
         }
     }
 
@@ -46,15 +46,18 @@ public class HighScoreTable : ScriptableObject
             Debug.Log("NEW FASTEST LAP!");
             Debug.Log(string.Format("Last Fastest: {0} -{1}", raceInfo.parseTimeFromSeconds(lastValue), lastName));
         }
-        if(raceInfo.totalSeconds < track.fastestTotal.valueInSeconds|| track.fastestTotal.valueInSeconds == 0)
+        if(raceInfo.totalSeconds < track.fastestTotal.valueInSeconds || track.fastestTotal.valueInSeconds == 0)
         {
             lastName = track.fastestTotal.name;
             lastValue = track.fastestTotal.valueInSeconds;
 
             track.fastestTotal.valueInSeconds = raceInfo.totalSeconds;
             track.fastestTotal.name = "Default";
+            track.ghost = GameManager.instance.playerGhostData.trackData;
+
             Debug.Log("NEW FASTEST TOTAL!");
             Debug.Log(string.Format("Last Total: {0} -{1}", raceInfo.parseTimeFromSeconds(lastValue), lastName));
+            
         }
 
         track.totalPlayTime += raceInfo.totalSeconds;

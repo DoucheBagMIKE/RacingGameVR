@@ -13,7 +13,11 @@ public class GhostLapData
 
     public GhostLapData()
     {
-        LapPositions = new List<Vector3>();
-        lapRotations = new List<Quaternion>();
+        if(LapPositions == null)
+        {
+            LapPositions = new List<Vector3>();
+            lapRotations = new List<Quaternion>();
+        }
+        
     }
 }

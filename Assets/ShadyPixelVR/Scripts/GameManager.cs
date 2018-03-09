@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 
     public HighScoreTable highScoreAsset;
 
+    [HideInInspector]
+    public GhostLapTracker playerGhostData;
+
     [Header("Game State")]
     [Tooltip("Current state of the game.")]
     public GameState currentState;
@@ -86,18 +89,6 @@ public class GameManager : MonoBehaviour {
         //Sets current state to Start
         currentState = GameState.RaceStart;
 
-        //Find ref to player
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-
-        //..if found player, find ref to car controller
-        if(playerObj!= null)
-            playerCarController = playerObj.GetComponent<VehicleMovement>();
-        else
-            Debug.Log("Can not find player object!");
-
-        if(playerCarController==null)
-            Debug.Log("Can not find player car!");
-
         //wait 5 seconds before start of race
         //should have countdown timer here
         Debug.Log("START YOUR ENGINES!");
@@ -111,6 +102,14 @@ public class GameManager : MonoBehaviour {
         Debug.Log("1..");
         yield return new WaitForSeconds(1f);
         Debug.Log("GO!");
+
+        TrackStats highScore  = highScoreAsset.GetOrCreate(raceInfo.selectedTrack.sceneName);
+        if (highScore.ghost.lap.Count > 0)
+        {
+            playerGhostData.savedTrackData = highScore.ghost;
+            playerGhostData.StartGhostingPlayerLaps();
+        }
+
         CheckLastLap();
 
         //change game state to racing
@@ -181,6 +180,8 @@ public class GameManager : MonoBehaviour {
 
         playerCarController.transform.position = trackStart.transform.position;
         playerCarController.transform.rotation = trackStart.transform.rotation;
+
+        playerGhostData = playerCarController.GetComponent<GhostLapTracker>();
 
     }
 

@@ -2616,6 +2616,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostCar: {fileID: 1668700455965962, guid: 4e9bce0f82d1bf641b0e178e3d18266d, type: 2}
+  trackData:
+    name: 
+    lap: []
 --- !u!114 &114125465512573496
 MonoBehaviour:
   m_ObjectHideFlags: 1

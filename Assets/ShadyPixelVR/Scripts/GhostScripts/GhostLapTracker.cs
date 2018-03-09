@@ -7,8 +7,10 @@ public class GhostLapTracker : MonoBehaviour {
     public GameObject ghostCar;
     Rigidbody rb;
     VehicleMovement movement;
-    GhostTrackData trackData;
-    //List<GhostLapData> lapData;
+    [HideInInspector]
+    public GhostTrackData trackData;
+    [HideInInspector]
+    public GhostTrackData savedTrackData;
     int ghostLap;
     int pos;
 
@@ -74,10 +76,11 @@ public class GhostLapTracker : MonoBehaviour {
 
             if(isGhosting)
             {
-                if(pos < trackData.lap[ghostLap].LapPositions.Count)
+                GhostTrackData data = savedTrackData != null ? savedTrackData : trackData;
+                if (pos < data.lap[ghostLap].LapPositions.Count)
                 {
-                    rb.MovePosition(trackData.lap[ghostLap].LapPositions[pos]);
-                    rb.MoveRotation(trackData.lap[ghostLap].lapRotations[pos]);
+                    rb.MovePosition(data.lap[ghostLap].LapPositions[pos]);
+                    rb.MoveRotation(data.lap[ghostLap].lapRotations[pos]);
                     pos++;
                 }
                 else
@@ -94,7 +97,7 @@ public class GhostLapTracker : MonoBehaviour {
         }
     }
 
-    void StartGhostingPlayerLaps()
+    public void StartGhostingPlayerLaps()
     {
         FinishLine finish = GameObject.FindGameObjectWithTag("FinishLine").GetComponent<FinishLine>();
         finish.lapComplete -= StartGhostingPlayerLaps;
