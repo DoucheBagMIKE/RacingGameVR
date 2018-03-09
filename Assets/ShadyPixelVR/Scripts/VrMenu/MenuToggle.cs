@@ -8,6 +8,12 @@ public class MenuToggle : MonoBehaviour {
     public VRTK_ControllerEvents controllerEvents;
     public Menu menuObject;
 
+    public void Awake()
+    {
+        if (menuObject == null)
+            menuObject = GameObject.FindObjectOfType<Menu>();
+    }
+
     public void OnEnable()
     {
         controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;

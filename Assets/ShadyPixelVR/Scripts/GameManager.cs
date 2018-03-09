@@ -188,6 +188,11 @@ public class GameManager : MonoBehaviour {
     {
         raceInfo.selectedTrack = trackAsset;
         DontDestroyOnLoad(gameObject);
+        raceInfo.currentLap = 0;
+        Menu m;
+        m = GetComponentInChildren<Menu>();
+        m.HideTabs();
+        m.menuState = false;
         SceneManager.LoadScene(raceInfo.selectedTrack.sceneName, LoadSceneMode.Single);
     }
 
@@ -195,6 +200,10 @@ public class GameManager : MonoBehaviour {
     {
         DontDestroyOnLoad(gameObject);
         raceInfo.currentLap = 0;
+        Menu m;
+        m = GetComponentInChildren<Menu>();
+        m.HideTabs();
+        m.menuState = false;
         SceneManager.LoadScene(raceInfo.selectedTrack.sceneName, LoadSceneMode.Single);
     }
 }

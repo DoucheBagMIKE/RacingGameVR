@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4401692390323832}
-  - component: {fileID: 114021176414652390}
   m_Layer: 0
   m_Name: '[VRTK_Scripts]'
   m_TagString: Untagged
@@ -451,9 +450,11 @@ GameObject:
   - component: {fileID: 114221298038881334}
   - component: {fileID: 114091554302084766}
   - component: {fileID: 114457999859954820}
+  - component: {fileID: 114473207951966522}
+  - component: {fileID: 65292037336110594}
   m_Layer: 0
   m_Name: RightController
-  m_TagString: Untagged
+  m_TagString: PlayerHands
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -667,9 +668,11 @@ GameObject:
   - component: {fileID: 114099779936433532}
   - component: {fileID: 114748375919017724}
   - component: {fileID: 114802679272046784}
+  - component: {fileID: 114246118526651070}
+  - component: {fileID: 65426175183224834}
   m_Layer: 0
   m_Name: LeftController
-  m_TagString: Untagged
+  m_TagString: PlayerHands
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1202,7 +1205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4693603007438222}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4401692390323832
 Transform:
@@ -1217,7 +1220,7 @@ Transform:
   - {fileID: 4561310996700664}
   - {fileID: 4072473511479742}
   m_Father: {fileID: 4693603007438222}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4408705629642608
 Transform:
@@ -1331,7 +1334,7 @@ Transform:
   - {fileID: 224028369908434444}
   - {fileID: 224092479815777276}
   m_Father: {fileID: 4693603007438222}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4616865300774070
 Transform:
@@ -1439,9 +1442,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4519964992423984}
-  - {fileID: 4401692390323832}
   - {fileID: 4605958222985866}
   - {fileID: 4384607707801112}
+  - {fileID: 4401692390323832}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -99.61201, z: 0}
@@ -1699,7 +1702,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -2091,6 +2094,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 2
+--- !u!65 &65292037336110594
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511862460079770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65393187123764610
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2114,6 +2129,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65426175183224834
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752828296707348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65621592425471958
 BoxCollider:
@@ -2464,17 +2491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: -1
   origin: {fileID: 0}
---- !u!114 &114021176414652390
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1256427242234402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af02f6529c1093e429f16c76157467b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114039436895151026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2739,6 +2755,19 @@ MonoBehaviour:
   trackedPosition: {x: 0, y: 0, z: 0}
   trackedRotation: {x: 0, y: 0, z: 0, w: 0}
   trackedTimeOffset: 1
+--- !u!114 &114246118526651070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752828296707348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4052bfdde42ff84cb512f48fa7d3b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerEvents: {fileID: 114099779936433532}
+  menuObject: {fileID: 0}
 --- !u!114 &114257942924112128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2853,12 +2882,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 1474333823316736}
-  actualHeadset: {fileID: 1983725169907506}
-  actualLeftController: {fileID: 1184110236129610}
-  actualRightController: {fileID: 1746810097161358}
-  modelAliasLeftController: {fileID: 1814523046696016}
-  modelAliasRightController: {fileID: 1789913871310726}
+  actualBoundaries: {fileID: 0}
+  actualHeadset: {fileID: 0}
+  actualLeftController: {fileID: 0}
+  actualRightController: {fileID: 0}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
@@ -2983,8 +3012,8 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 114172247417825854}
   - {fileID: 114307312518561494}
+  - {fileID: 114172247417825854}
   excludeTargetGroups: 
   persistOnLoad: 0
 --- !u!114 &114441725875305736
@@ -3115,6 +3144,19 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
+--- !u!114 &114473207951966522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511862460079770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4052bfdde42ff84cb512f48fa7d3b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerEvents: {fileID: 114221298038881334}
+  menuObject: {fileID: 0}
 --- !u!114 &114561644811226182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3525,7 +3567,7 @@ MonoBehaviour:
   grabButton: 7
   grabPrecognition: 0
   throwMultiplier: 1
-  createRigidBodyWhenNotTouching: 1
+  createRigidBodyWhenNotTouching: 0
   controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
