@@ -11,7 +11,7 @@ public class MenuToggle : MonoBehaviour {
     public void Awake()
     {
         if (menuObject == null)
-            menuObject = GameObject.FindObjectOfType<Menu>();
+            menuObject = GameManager.instance.vrMenu;
     }
 
     public void OnEnable()

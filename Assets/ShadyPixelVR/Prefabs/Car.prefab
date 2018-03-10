@@ -2619,6 +2619,9 @@ MonoBehaviour:
   trackData:
     name: 
     lap: []
+  savedTrackData:
+    name: 
+    lap: []
 --- !u!114 &114125465512573496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3015,8 +3018,8 @@ MonoBehaviour:
   autoManageVRSettings: 1
   autoLoadSetup: 1
   setups:
-  - {fileID: 114307312518561494}
   - {fileID: 114172247417825854}
+  - {fileID: 114307312518561494}
   excludeTargetGroups: 
   persistOnLoad: 0
 --- !u!114 &114441725875305736

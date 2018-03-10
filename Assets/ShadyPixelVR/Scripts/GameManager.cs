@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using Malee;
 
 public class GameManager : MonoBehaviour {
 
@@ -32,6 +34,40 @@ public class GameManager : MonoBehaviour {
 
     [Tooltip("Player reference. If blank, will set at runtime when avaliable.")]
     public VehicleMovement playerCarController;
+
+    [Header("GUI")]
+    public Menu vrMenu;
+
+    #region Debug
+
+    [Header("Debug Options")]
+    [Reorderable]
+    public DebugOptionList debugOptionList;
+
+    [System.Serializable]
+    public class DebugOption
+    {
+        public KeyCode keyCode;
+        public UnityEvent unityEvents;
+
+    }
+
+    [System.Serializable]
+    public class DebugOptionList : ReorderableArray<DebugOption>
+    { }
+
+    public void CheckForDebugInput()
+    {
+        foreach(DebugOption option in debugOptionList)
+        {
+            if(Input.GetKeyDown(option.keyCode))
+            {
+                option.unityEvents.Invoke();
+            }
+        }
+    }
+
+    #endregion
 
     // Use this for initialization
     void Awake()
@@ -80,6 +116,8 @@ public class GameManager : MonoBehaviour {
 
     public void Update()
     {
+        CheckForDebugInput();
+
         if (currentState == GameState.Racing)
             RaceUpdate();
     }
