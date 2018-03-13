@@ -66,7 +66,7 @@ public class GhostLapTracker : MonoBehaviour {
 
             for (int i = 0; i < updates; i++)
             {
-                if (framesPercentage - i > 1)
+                if (framesPercentage - i >= 1)
                 {
                     UpdateGhost(1f);
                 }
