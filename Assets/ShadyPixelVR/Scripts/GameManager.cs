@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("GO!");
 
         TrackStats highScore  = highScoreAsset.GetOrCreate(raceInfo.selectedTrack.sceneName);
-        if (highScore.ghost.lap.Count > 0)
+        if (highScore.ghost != null && highScore.ghost.lap.Count > 0)
         {
             playerGhostData.savedTrackData = highScore.ghost;
             playerGhostData.StartGhostingPlayerLaps();

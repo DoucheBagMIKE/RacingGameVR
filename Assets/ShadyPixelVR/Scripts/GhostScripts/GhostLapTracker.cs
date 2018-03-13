@@ -52,6 +52,41 @@ public class GhostLapTracker : MonoBehaviour {
 
     }
 
+    private void Update()
+    {
+        if (GameManager.instance.currentState == GameManager.GameState.RaceStart || GameManager.instance.currentState == GameManager.GameState.Menu)
+            return;
+
+        lastTrackedTime += Time.deltaTime;
+
+        if (isGhosting)
+        {
+            float framesPercentage = lastTrackedTime / trackedTimeOffset;
+            int updates = Mathf.CeilToInt(framesPercentage);
+
+            for (int i = 0; i < updates; i++)
+            {
+                if (framesPercentage - i > 1)
+                {
+                    UpdateGhost(1f);
+                }
+                else if (framesPercentage - 1 > 0)
+                {
+                    UpdateGhost(framesPercentage - i);
+                }
+            }
+
+        }
+
+        if (lastTrackedTime >= trackedTimeOffset)
+        {
+            lastTrackedTime -= trackedTimeOffset;
+
+            UpdateTrackedVars();
+
+        }
+    }
+
     void UpdateTrackedVars()
     {
         if (GameManager.instance.raceInfo.currentLap > GameManager.instance.raceInfo.numberOfLaps - 1)
@@ -60,40 +95,34 @@ public class GhostLapTracker : MonoBehaviour {
         trackData.lap[cLap].LapPositions.Add(transform.position);
         trackData.lap[cLap].lapRotations.Add(transform.rotation);
 
-        lastTrackedTime = 0f;
     }
 
-    private void Update()
+    void UpdateGhost(float lerp = 1f)
     {
-        if (GameManager.instance.currentState == GameManager.GameState.RaceStart || GameManager.instance.currentState == GameManager.GameState.Menu)
-            return;
-
-        lastTrackedTime += Time.deltaTime;
-
-        if (lastTrackedTime >= trackedTimeOffset)
+        GhostTrackData data = savedTrackData.lap.Count > 0 ? savedTrackData : trackData;
+        if (pos < data.lap[ghostLap].LapPositions.Count)
         {
-            UpdateTrackedVars();
+            int lPos = pos - 1 >= 0 ? pos - 1 : 0;
+            int lLap = pos - 1 >= 0 ? ghostLap : ghostLap - 1;
+            lLap = lLap < 0 ? 0 : lLap;
 
-            if(isGhosting)
+            rb.MovePosition(Vector3.Lerp(data.lap[lLap].LapPositions[lPos], data.lap[ghostLap].LapPositions[pos], lerp));
+            rb.MoveRotation(Quaternion.Lerp(data.lap[lLap].lapRotations[lPos], data.lap[ghostLap].lapRotations[pos], lerp));
+
+            if(lerp == 1)
             {
-                GhostTrackData data = savedTrackData != null ? savedTrackData : trackData;
-                if (pos < data.lap[ghostLap].LapPositions.Count)
-                {
-                    rb.MovePosition(data.lap[ghostLap].LapPositions[pos]);
-                    rb.MoveRotation(data.lap[ghostLap].lapRotations[pos]);
-                    pos++;
-                }
-                else
-                {
-                    pos = 0;
-                    ghostLap++;
-                    if(ghostLap > GameManager.instance.raceInfo.numberOfLaps - 1)
-                    {
-                        isGhosting = false;
-                    }
-                }
+                pos++;
             }
+        }
+        else
+        {
+            pos = 0;
+            ghostLap++;
 
+            if (ghostLap > GameManager.instance.raceInfo.numberOfLaps - 1)
+            {
+                isGhosting = false;
+            }
         }
     }
 
@@ -107,5 +136,9 @@ public class GhostLapTracker : MonoBehaviour {
         rb = ghostCar.GetComponent<Rigidbody>();
         ghostLap = 0;
         pos = 0;
+
+        GhostTrackData data = savedTrackData.lap.Count > 0 ? savedTrackData : trackData;
+        rb.MovePosition(data.lap[0].LapPositions[0]);
+        rb.MoveRotation(data.lap[0].lapRotations[0]);
     }
 }

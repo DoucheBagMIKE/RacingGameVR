@@ -11,7 +11,7 @@ public class GhostTrackData
     public List<GhostLapData> lap;
 
     // Use this for initialization
-    private void Awake()
+    public GhostTrackData()
     {
         //lap = new List<GhostLapData>();
         if(lap == null)
