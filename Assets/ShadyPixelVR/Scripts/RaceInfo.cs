@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class RaceInfo
 {
-    [Tooltip("The Current Selected Track to be Run.")]
+    [PropertyTooltip("The Current Selected Track to be Run.")]
     public TrackAsset selectedTrack;
 
     public GameObject selectedCar;

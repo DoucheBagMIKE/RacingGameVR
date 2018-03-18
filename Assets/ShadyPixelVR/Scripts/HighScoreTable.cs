@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName= "HighScoreTable", menuName ="HighScoreTable")]
 public class HighScoreTable : ScriptableObject
 {
+    [ListDrawerSettings(DraggableItems = false)]
     public List<string> keys;
+
+    [ListDrawerSettings(DraggableItems = false)]
     public List<TrackStats> values;
 
     public TrackStats GetOrCreate(string track)

@@ -2,25 +2,26 @@
 //are handling the hovering and thrust calculations. 
 
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class VehicleMovement : MonoBehaviour
 {
 	public float speed;						//The current forward speed of the ship
 
-	[Header("Drive Settings")]
+	[Title("Drive Settings")]
 	public float driveForce = 17f;			//The force that the engine generates
 	public float slowingVelFactor = .99f;   //The percentage of velocity the ship maintains when not thrusting (e.g., a value of .99 means the ship loses 1% velocity when not thrusting)
 	public float brakingVelFactor = .95f;   //The percentage of velocty the ship maintains when braking
 	public float angleOfRoll = 30f;			//The angle that the ship "banks" into a turn
 
-	[Header("Hover Settings")]
+	[Title("Hover Settings")]
 	public float hoverHeight = 1.5f;        //The height the ship maintains when hovering
 	public float maxGroundDist = 5f;        //The distance the ship can be above the ground before it is "falling"
 	public float hoverForce = 300f;			//The force of the ship's hovering
 	public LayerMask whatIsGround;			//A layer mask to determine what layer the ground is on
 	public PIDController hoverPID;			//A PID controller to smooth the ship's hovering
 
-	[Header("Physics Settings")]
+	[Title("Physics Settings")]
 	public Transform shipBody;				//A reference to the ship's body, this is for cosmetics
 	public float terminalVelocity = 100f;   //The max speed the ship can go
 	public float hoverGravity = 20f;        //The gravity applied to the ship while it is on the ground
@@ -32,7 +33,7 @@ public class VehicleMovement : MonoBehaviour
     [ReadOnly]
     public bool isOnGround;						//A flag determining if the ship is currently on the ground
 
-    [Header("Misc")]
+    [Title("Misc")]
     public float rotateToGroundAmount = 10f;
     public float turningMultiplier = 1;
 

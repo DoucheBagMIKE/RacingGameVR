@@ -2,31 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class VehicleAVFX : MonoBehaviour {
 
-    [Header("AVFX References")]
-    [Tooltip("Boost trail particle system.")]
+    [Title("AVFX References")]
+    [PropertyTooltip("Boost trail particle system.")]
     public ParticleSystem boostTrail;
-    [Tooltip("Speed trail object")]
+    [PropertyTooltip("Speed trail object")]
     public GameObject speedTrailObject;
-    [Tooltip("Collision sparks particle system.")]
+    [PropertyTooltip("Collision sparks particle system.")]
     public ParticleSystem collisionSparks;
-    [Tooltip("Engine audio source.")]
+    [PropertyTooltip("Engine audio source.")]
     public AudioSource engineAudio;
 
-    [Header("Variables")]
-    [Tooltip("minimum speed required to activate the speed trails.")]
+    [Title("Variables")]
+    [PropertyTooltip("minimum speed required to activate the speed trails.")]
     public float minTrailSpeed = 20f;
 
-    [Header("Audio")]
-    [Tooltip("min volume.")]
+    [Title("Audio")]
+    [PropertyTooltip("min volume.")]
     public float minEngineVolume = 0f;
-    [Tooltip("max volume.")]
+    [PropertyTooltip("max volume.")]
     public float maxEngineVolume = 0.6f;
-    [Tooltip("min pitch.")]
+    [PropertyTooltip("min pitch.")]
     public float minEnginePitch = 0.3f;
-    [Tooltip("max pitch.")]
+    [PropertyTooltip("max pitch.")]
     public float maxEnginePitch = 0.8f;
 
     float thrustMaxLifetime;

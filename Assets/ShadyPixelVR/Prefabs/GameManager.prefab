@@ -362,7 +362,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1946697283033682}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.39, y: 1.6, z: -13.87}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224254063009639316}
@@ -572,61 +572,114 @@ MonoBehaviour:
   playerCarController: {fileID: 0}
   vrMenu: {fileID: 114307513768354552}
   debugOptionList:
-    array:
-    - keyCode: 257
-      unityEvents:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 114071517168010414}
-            m_MethodName: LoadLevel
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 11400000, guid: 684622228c7b66544a30df4fe8c9110f,
-                type: 2}
-              m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    - keyCode: 258
-      unityEvents:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 114071517168010414}
-            m_MethodName: LoadLevel
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 11400000, guid: a8f8d4357ff841d42943465e5ceaea25,
-                type: 2}
-              m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    - keyCode: 259
-      unityEvents:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 114071517168010414}
-            m_MethodName: LoadLevel
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 11400000, guid: f3960165e363ac74382e909d63edf821,
-                type: 2}
-              m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+  - keyCode: 257
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 684622228c7b66544a30df4fe8c9110f,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - keyCode: 258
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: a8f8d4357ff841d42943465e5ceaea25,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - keyCode: 258
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 002a05dbe2ec57042976c73f9d7281d2,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - keyCode: 259
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: f3960165e363ac74382e909d63edf821,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - keyCode: 260
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: ec40516412b41e049a8aa65adfc68d4d,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - keyCode: 261
+    unityEvents:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114071517168010414}
+          m_MethodName: LoadLevel
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 411dd62c5e5bcb34487b5e969593a59c,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: TrackAsset, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!114 &114082380570623160
 MonoBehaviour:
   m_ObjectHideFlags: 1

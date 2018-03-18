@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using Malee;
+using Sirenix.OdinInspector;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public GhostLapTracker playerGhostData;
 
-    [Header("Game State")]
-    [Tooltip("Current state of the game.")]
+    [Title("Game State")]
+    [PropertyTooltip("Current state of the game.")]
     public GameState currentState;
 
     public enum GameState
@@ -27,22 +27,21 @@ public class GameManager : MonoBehaviour {
         RaceEnd
     }
 
-    [Header("Race Settings")]
+    [Title("Race Settings")]
 
-    [Tooltip("Some race setup Options and the runtime variables for the current race.")]
+    [PropertyTooltip("Some race setup Options and the runtime variables for the current race.")]
     public RaceInfo raceInfo;
 
-    [Tooltip("Player reference. If blank, will set at runtime when avaliable.")]
+    [PropertyTooltip("Player reference. If blank, will set at runtime when avaliable.")]
     public VehicleMovement playerCarController;
 
-    [Header("GUI")]
+    [Title("GUI")]
     public Menu vrMenu;
 
     #region Debug
 
-    [Header("Debug Options")]
-    [Reorderable]
-    public DebugOptionList debugOptionList;
+    [Title("Debug Options")]
+    public List<DebugOption> debugOptionList;
 
     [System.Serializable]
     public class DebugOption
@@ -51,10 +50,6 @@ public class GameManager : MonoBehaviour {
         public UnityEvent unityEvents;
 
     }
-
-    [System.Serializable]
-    public class DebugOptionList : ReorderableArray<DebugOption>
-    { }
 
     public void CheckForDebugInput()
     {
